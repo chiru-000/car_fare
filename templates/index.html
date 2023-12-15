@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Fare Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Fare Prediction</h1>
+    
+    <form action="/predict" method="post">
+        <label for="distance">Distance (miles): </label>
+        <input type="text" name="distance" required>
+
+        <label for="duration">Duration (minutes): </label>
+        <input type="text" name="duration" required>
+
+        <label for="passengers">Passengers: </label>
+        <input type="text" name="passengers" required>
+
+        <label for="time_of_day">Time of Day: </label>
+        <select name="time_of_day" required>
+            <option value="1">Morning</option>
+            <option value="2">Afternoon</option>
+            <option value="3">Evening</option>
+            <option value="4">Night</option>
+        </select>
+
+        <label for="weather_condition">Weather Condition: </label>
+        <select name="weather_condition" required>
+            <option value="1">Clear</option>
+            <option value="2">Rainy</option>
+            <option value="3">Snowy</option>
+        </select>
+
+        <label for="traffic_condition">Traffic Condition: </label>
+        <select name="traffic_condition" required>
+            <option value="1">Light</option>
+            <option value="2">Moderate</option>
+            <option value="3">Heavy</option>
+        </select>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if predicted_fare is not none %}
+    <p>Predicted Fare: ₹{{ predicted_fare }}</p>
+    {% endif %}
+</body>
+</html>
